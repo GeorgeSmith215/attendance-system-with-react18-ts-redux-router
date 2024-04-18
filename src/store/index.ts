@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import type { Reducer, UnknownAction } from '@reduxjs/toolkit'
 import usersReducer from './modules/users'
+import SignsReducer from './modules/signs'
 import type { UsersState } from './modules/users'
 import type { PersistPartial } from 'redux-persist/es/persistReducer'
 import {
@@ -25,7 +26,8 @@ const persistConfig = {
 
 const store = configureStore({
   reducer: {
-    users: persistReducer(persistConfig, usersReducer) as Reducer<UsersState & PersistPartial, UnknownAction>
+    users: persistReducer(persistConfig, usersReducer) as Reducer<UsersState & PersistPartial, UnknownAction>,
+    signs: SignsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
